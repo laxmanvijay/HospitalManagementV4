@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import global.coda.hospitalmanagement.constants.QueryNamesConstants;
+import global.coda.hospitalmanagement.constants.QueryConstants;
 import global.coda.hospitalmanagement.models.User;
 
 /**
@@ -27,7 +27,7 @@ public interface UserMapper {
 	 * @param user the user model
 	 * @return int the number of rows affected
 	 */
-	@Insert(QueryNamesConstants.CREATE_USER_QUERY)
+	@Insert(QueryConstants.CREATE_USER_QUERY)
 	@Options(useGeneratedKeys = true, keyProperty = "pkUserId", keyColumn = "pk_user_id")
 	int createUser(User user);
 
@@ -35,7 +35,7 @@ public interface UserMapper {
 	 *
 	 * @return List<User>
 	 */
-	@Select(QueryNamesConstants.READ_ALL_USERS_QUERY)
+	@Select(QueryConstants.READ_ALL_USERS_QUERY)
 	List<User> readAllUsers();
 
 	/**
@@ -43,7 +43,7 @@ public interface UserMapper {
 	 * @param id id of the user
 	 * @return User
 	 */
-	@Select(QueryNamesConstants.READ_USER_BY_ID_QUERY)
+	@Select(QueryConstants.READ_USER_BY_ID_QUERY)
 	User readUserById(int id);
 
 	/**
@@ -51,7 +51,7 @@ public interface UserMapper {
 	 * @param email email of the user
 	 * @return User
 	 */
-	@Select(QueryNamesConstants.READ_USER_BY_EMAIL_QUERY)
+	@Select(QueryConstants.READ_USER_BY_EMAIL_QUERY)
 	User readUserByEmail(String email);
 
 	/**
@@ -59,7 +59,7 @@ public interface UserMapper {
 	 * @param user the user model
 	 * @return int the number of rows affected
 	 */
-	@Update(QueryNamesConstants.UPDATE_USER_QUERY)
+	@Update(QueryConstants.UPDATE_USER_QUERY)
 	int updateUser(User user);
 
 	/**
@@ -67,7 +67,7 @@ public interface UserMapper {
 	 * @param id id of the user
 	 * @return int the number of rows affected
 	 */
-	@Update(QueryNamesConstants.DELETE_USER_QUERY)
+	@Update(QueryConstants.DELETE_USER_QUERY)
 	int deleteUser(int id);
 
 	/**
@@ -75,6 +75,6 @@ public interface UserMapper {
 	 * @param id id of the user
 	 * @return int the number of rows affected
 	 */
-	@Delete(QueryNamesConstants.DELETE_USER_PERMANENTLY_QUERY)
+	@Delete(QueryConstants.DELETE_USER_PERMANENTLY_QUERY)
 	int deleteUserPermanently(int id);
 }

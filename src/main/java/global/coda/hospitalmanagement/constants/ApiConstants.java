@@ -29,6 +29,10 @@ public final class ApiConstants {
 	public static final String HMAPIC2005T = "HMAPIC2005T";
 	public static final String HMAPIC2006T = "HMAPIC2006T";
 	public static final String HMAPIC2007T = "HMAPIC2007T";
+	public static final String HMAPIC2008T = "HMAPIC2008T";
+	public static final String HMAPIC2009T = "HMAPIC2009T";
+	public static final String HMAPIC2010T = "HMAPIC2010T";
+	public static final String HMAPIC2011T = "HMAPIC2011T";
 
 	public static final String HMAPIC3000T = "HMAPIC3000T";
 	public static final String HMAPIC3001T = "HMAPIC3001T";
@@ -38,4 +42,6 @@ public final class ApiConstants {
 	public static final String HMAPIC3005T = "HMAPIC3005T";
 	public static final String HMAPIC3006T = "HMAPIC3006T";
 	public static final String HMAPIC3007T = "HMAPIC3007T";
+
+
 }

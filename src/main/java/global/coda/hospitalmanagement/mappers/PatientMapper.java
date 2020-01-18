@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import global.coda.hospitalmanagement.constants.QueryNamesConstants;
+import global.coda.hospitalmanagement.constants.QueryConstants;
 import global.coda.hospitalmanagement.models.Patient;
 
 /**
@@ -25,7 +25,7 @@ public interface PatientMapper {
 	 * @param patient the patient model
 	 * @return int the number of rows affected
 	 */
-	@Insert(QueryNamesConstants.CREATE_PATIENT_QUERY)
+	@Insert(QueryConstants.CREATE_PATIENT_QUERY)
 	int createPatient(Patient patient);
 
 	/**
@@ -33,7 +33,7 @@ public interface PatientMapper {
 	 * @param id id of the patient
 	 * @return Patient
 	 */
-	@Select(QueryNamesConstants.READ_PATIENT_BY_ID_QUERY)
+	@Select(QueryConstants.READ_PATIENT_BY_ID_QUERY)
 	Patient readPatientByUserId(int id);
 
 	/**
@@ -41,7 +41,7 @@ public interface PatientMapper {
 	 * @param idstring string of ids
 	 * @return List<Patient>
 	 */
-	@Select(QueryNamesConstants.READ_SEVERAL_PATIENT_WITH_THEIR_ID_QUERY)
+	@Select(QueryConstants.READ_SEVERAL_PATIENT_WITH_THEIR_ID_QUERY)
 	List<Patient> getSeveralPatientsWithTheirId(String idstring);
 
 	/**
@@ -49,7 +49,7 @@ public interface PatientMapper {
 	 * @param patient the patient model
 	 * @return int the number of rows affected
 	 */
-	@Update(QueryNamesConstants.UPDATE_PATIENT_QUERY)
+	@Update(QueryConstants.UPDATE_PATIENT_QUERY)
 	int updatePatient(Patient patient);
 
 	/**
@@ -57,6 +57,6 @@ public interface PatientMapper {
 	 * @param id id of the patient
 	 * @return int the number of rows affected
 	 */
-	@Delete(QueryNamesConstants.DELETE_USER_QUERY)
+	@Delete(QueryConstants.DELETE_USER_QUERY)
 	int deletePatient(int id);
 }

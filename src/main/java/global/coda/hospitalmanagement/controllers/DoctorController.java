@@ -50,7 +50,7 @@ public class DoctorController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public final String createDoctor(@RequestBody Doctor doctor) throws SystemException, BusinessException {
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2000T), doctor);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2000T), doctor.toString());
 		int doctorId = doctorDelegate.createDoctor(doctor);
 		CustomResponse<Doctor> customResponse = new CustomResponse<>();
 		Doctor doctorAfterCreation = doctorDelegate.readDoctor(doctorId);
@@ -87,7 +87,7 @@ public class DoctorController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
 	public final String updateDoctor(@RequestBody Doctor doctor) throws SystemException, BusinessException {
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2004T), doctor);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2004T), doctor.toString());
 		boolean result = doctorDelegate.updateDoctor(doctor);
 		CustomResponse<Boolean> customResponse = new CustomResponse<>();
 		customResponse.setStatusCode(200);
@@ -125,13 +125,13 @@ public class DoctorController {
 	 */
 	@RequestMapping(value = "{id}/patients", method = RequestMethod.GET)
 	public final String readAllPatientsOfDoctor(@PathVariable("id") int id) throws SystemException, BusinessException {
-		LOGGER.info(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2006T), id);
+		LOGGER.info(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2008T), id);
 		System.out.println(id);
 		List<Patient> listOfPatients = doctorDelegate.getAllPatientsOfADoctor(id);
 		CustomResponse<List<Patient>> customResponse = new CustomResponse<>();
 		customResponse.setStatusCode(200);
 		customResponse.setData(listOfPatients);
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2007T), customResponse);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2009T), customResponse);
 		return gson.toJson(customResponse);
 	}
 
@@ -143,12 +143,12 @@ public class DoctorController {
 	 */
 	@RequestMapping(value = "getallpatients")
 	public final String readAllPatientsOfAllDoctors() throws SystemException, BusinessException {
-		LOGGER.info(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2006T));
+		LOGGER.info(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2010T));
 		List<PatientWithDoctor> listOfPatients = doctorDelegate.getAllPatientsOfAllDoctors();
 		CustomResponse<List<PatientWithDoctor>> customResponse = new CustomResponse<>();
 		customResponse.setStatusCode(200);
 		customResponse.setData(listOfPatients);
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2007T), customResponse);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2011T), customResponse);
 		return gson.toJson(customResponse);
 	}
 }

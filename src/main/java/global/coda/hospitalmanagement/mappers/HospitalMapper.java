@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import global.coda.hospitalmanagement.constants.QueryNamesConstants;
+import global.coda.hospitalmanagement.constants.QueryConstants;
 import global.coda.hospitalmanagement.models.Hospital;
 
 /**
@@ -22,7 +22,7 @@ public interface HospitalMapper {
 	 * @param hospital the hospital model
 	 * @return int the number of rows affected
 	 */
-	@Insert(QueryNamesConstants.CREATE_HOSPITAL_QUERY)
+	@Insert(QueryConstants.CREATE_HOSPITAL_QUERY)
 	int createHospital(Hospital hospital);
 
 	/**
@@ -30,7 +30,7 @@ public interface HospitalMapper {
 	 * @param id id of the hospital
 	 * @return Hospital
 	 */
-	@Select(QueryNamesConstants.READ_HOSPITAL_BY_ID_QUERY)
+	@Select(QueryConstants.READ_HOSPITAL_BY_ID_QUERY)
 	Hospital readHospitalById(int id);
 
 	/**
@@ -38,7 +38,7 @@ public interface HospitalMapper {
 	 * @param hospital the hospital model
 	 * @return int the number of rows affected
 	 */
-	@Update(QueryNamesConstants.UPDATE_HOSPITAL_QUERY)
+	@Update(QueryConstants.UPDATE_HOSPITAL_QUERY)
 	int updateHospital(Hospital hospital);
 
 	/**
@@ -46,6 +46,6 @@ public interface HospitalMapper {
 	 * @param id id of the hospital
 	 * @return int the number of rows affected
 	 */
-	@Update(QueryNamesConstants.DELETE_HOSPITAL_QUERY)
+	@Update(QueryConstants.DELETE_HOSPITAL_QUERY)
 	int deleteHospital(int id);
 }

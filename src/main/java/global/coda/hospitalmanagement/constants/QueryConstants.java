@@ -7,12 +7,12 @@ package global.coda.hospitalmanagement.constants;
  * Constants file that contains query names which are used throughout the application
  *
  */
-public final class QueryNamesConstants {
+public final class QueryConstants {
 
 	/**
 	 *
 	 */
-	private QueryNamesConstants() {
+	private QueryConstants() {
 
 	}
 
@@ -34,8 +34,8 @@ public final class QueryNamesConstants {
 	public static final String UPDATE_DOCTOR_QUERY = "update t_doctor set specialist = #{specialist} where fk_user_id = #{pkUserId}";
 	public static final String GET_ALL_PATIENT_ID_OF_A_DOCTOR_QUERY = "select fk_patient_id from t_patient_has_doctor where fk_doctor_id = #{id}";
 	public static final String GET_ALL_PATIENTS_OF_ALL_DOCTORS_QUERY = "select t_user.pk_user_id,t_user.username,t_user.email,t_user.password,t_user.fk_role_id,t_user.age,t_user.phone,t_user.is_active,t_user.created_time,t_user.updated_time,"
-			+ "u.pk_user_id as doctor_id,u.email as doctor_email,u.username as doctor_name from"
-			+ "t_user join t_patient_has_doctor on t_user.pk_user_id=t_patient_has_doctor.fk_patient_id"
+			+ "u.pk_user_id as doctor_id,u.email as doctor_email,u.username as doctor_name from "
+			+ "t_user join t_patient_has_doctor on t_user.pk_user_id=t_patient_has_doctor.fk_patient_id "
 			+ "join t_user as u on t_patient_has_doctor.fk_doctor_id=u.pk_user_id where u.is_active=1;";
 
 	public static final String CREATE_HOSPITAL_QUERY = "insert into t_hospital(hospital_name) values(#{hospitalName})";

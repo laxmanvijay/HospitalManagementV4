@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import global.coda.hospitalmanagement.constants.QueryNamesConstants;
+import global.coda.hospitalmanagement.constants.QueryConstants;
 import global.coda.hospitalmanagement.models.Branch;
 
 /**
@@ -22,7 +22,7 @@ public interface BranchMapper {
 	 * @param branch branch model
 	 * @return int the number of rows affected
 	 */
-	@Insert(QueryNamesConstants.CREATE_BRANCH_QUERY)
+	@Insert(QueryConstants.CREATE_BRANCH_QUERY)
 	int createBranch(Branch branch);
 
 	/**
@@ -30,7 +30,7 @@ public interface BranchMapper {
 	 * @param id id of the branch
 	 * @return Branch the branch model
 	 */
-	@Select(QueryNamesConstants.READ_BRANCH_BY_ID_QUERY)
+	@Select(QueryConstants.READ_BRANCH_BY_ID_QUERY)
 	Branch readBranchById(int id);
 
 	/**
@@ -38,7 +38,7 @@ public interface BranchMapper {
 	 * @param hospital_id id of hospital
 	 * @return Branch
 	 */
-	@Select(QueryNamesConstants.READ_BRANCH_BY_HOSPITAL_ID_QUERY)
+	@Select(QueryConstants.READ_BRANCH_BY_HOSPITAL_ID_QUERY)
 	Branch readBranchByHospitalId(int hospital_id);
 
 	/**
@@ -46,7 +46,7 @@ public interface BranchMapper {
 	 * @param branch the branch model
 	 * @return int the number of rows affected
 	 */
-	@Update(QueryNamesConstants.UPDATE_BRANCH_QUERY)
+	@Update(QueryConstants.UPDATE_BRANCH_QUERY)
 	int updateBranch(Branch branch);
 
 	/**
@@ -54,6 +54,6 @@ public interface BranchMapper {
 	 * @param id id of the branch
 	 * @return int the number of rows affected
 	 */
-	@Update(QueryNamesConstants.DELETE_BRANCH_QUERY)
+	@Update(QueryConstants.DELETE_BRANCH_QUERY)
 	int deleteBranch(int id);
 }

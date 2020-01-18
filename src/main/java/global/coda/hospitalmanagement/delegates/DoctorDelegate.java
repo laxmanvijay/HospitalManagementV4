@@ -51,10 +51,10 @@ public class DoctorDelegate {
 	 * @throws BusinessException client side exceptions
 	 */
 	public int createDoctor(Doctor user) throws SystemException, BusinessException {
-		LOGGER.info(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1000T), user);
 		if (user == null) {
 			throw new BusinessException("id not found");
 		}
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1000T), user.toString());
 		int res;
 		try {
 			System.out.println(user.getEmail());
@@ -94,7 +94,7 @@ public class DoctorDelegate {
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
 		}
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1003T), user);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1003T), user.toString());
 		return user;
 	}
 
@@ -106,7 +106,7 @@ public class DoctorDelegate {
 	 * @throws BusinessException client side exceptions
 	 */
 	public boolean updateDoctor(Doctor doctor) throws SystemException, BusinessException {
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1004T), doctor);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1004T), doctor.toString());
 		int res;
 		if (doctor == null) {
 			throw new BusinessException("id not found");
@@ -193,7 +193,7 @@ public class DoctorDelegate {
 	 * @throws BusinessException client side errors
 	 */
 	public List<PatientWithDoctor> getAllPatientsOfAllDoctors() throws SystemException, BusinessException {
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1008T));
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1010T));
 		List<PatientWithDoctor> patients;
 		try {
 			patients = doctorDao.getAllPatientsOfAllDoctors();
@@ -203,7 +203,7 @@ public class DoctorDelegate {
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
 		}
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1009T), patients);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1011T), patients.toString());
 		return patients;
 	}
 }

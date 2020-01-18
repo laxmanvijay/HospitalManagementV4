@@ -47,7 +47,7 @@ public class PatientController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public final String createPatient(@RequestBody Patient patient) throws SystemException, BusinessException {
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC3000T), patient);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC3000T), patient.toString());
 		patientDelegate.createPatient(patient);
 		CustomResponse<Patient> customResponse = new CustomResponse<>();
 		LOGGER.debug("patient created using create method of PatientWebServiceApi");
@@ -85,7 +85,7 @@ public class PatientController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
 	public final String updatePatient(@RequestBody Patient patient) throws SystemException, BusinessException {
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC3004T), patient);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC3004T), patient.toString());
 		patientDelegate.updatePatient(patient);
 		CustomResponse<String> customResponse = new CustomResponse<>();
 		LOGGER.debug("patient updated using read method of PatientWebServiceApi");

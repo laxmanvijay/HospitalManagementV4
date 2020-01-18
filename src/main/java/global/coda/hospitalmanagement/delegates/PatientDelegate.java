@@ -42,7 +42,7 @@ public class PatientDelegate {
 		if (patient == null || patient.isEmpty()) {
 			throw new BusinessException("id not found");
 		}
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2000T), patient);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2000T), patient.toString());
 		int res;
 		try {
 			res = patientDao.createPatient(patient);
@@ -77,7 +77,7 @@ public class PatientDelegate {
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
 		}
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2003T), patient);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2003T), patient.toString());
 		return patient;
 	}
 
@@ -89,7 +89,7 @@ public class PatientDelegate {
 	 * @throws BusinessException client side exceptions
 	 */
 	public int updatePatient(Patient patient) throws SystemException, BusinessException {
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2004T), patient);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2004T), patient.toString());
 		int res;
 		if (patient == null || patient.isEmpty()) {
 			throw new BusinessException("id not found");

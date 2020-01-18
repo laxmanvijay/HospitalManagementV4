@@ -26,6 +26,10 @@ public final class DelegateConstants {
 	public static final String HMDC1005T = "HMDC1005T";
 	public static final String HMDC1006T = "HMDC1006T";
 	public static final String HMDC1007T = "HMDC1007T";
+	public static final String HMDC1008T = "HMDC1008T";
+	public static final String HMDC1009T = "HMDC1009T";
+	public static final String HMDC1010T = "HMDC1010T";
+	public static final String HMDC1011T = "HMDC1011T";
 
 	public static final String HMDC2000T = "HMDC2000T";
 	public static final String HMDC2001T = "HMDC2001T";
@@ -47,7 +51,4 @@ public final class DelegateConstants {
 	public static final String HMDC3008T = "HMDC3008T";
 	public static final String HMDC3009T = "HMDC3009T";
 
-	public static final String HMDC1008T = "HMDC1008T";
-
-	public static final String HMDC1009T = "HMDC1009T";
 }

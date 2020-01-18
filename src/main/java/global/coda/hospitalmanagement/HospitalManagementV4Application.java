@@ -9,14 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-public final class HospitalManagementV4Application {
-
-	/**
-	 *
-	 */
-	private HospitalManagementV4Application() {
-
-	}
+public class HospitalManagementV4Application {
 
 	/**
 	 *

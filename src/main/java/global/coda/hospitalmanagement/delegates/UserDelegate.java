@@ -39,7 +39,7 @@ public class UserDelegate {
 	 * @throws BusinessException client side exception
 	 */
 	public int createUser(User user) throws SystemException, BusinessException {
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC3000T), user);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC3000T), user.toString());
 		int res;
 		try {
 			res = userDao.createUser(user);
@@ -66,7 +66,7 @@ public class UserDelegate {
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
 		}
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC3003T), user);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC3003T), user.toString());
 		return user;
 	}
 
@@ -78,7 +78,7 @@ public class UserDelegate {
 	 * @throws BusinessException client side exception
 	 */
 	public int updateUser(User user) throws SystemException, BusinessException {
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC3004T), user);
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC3004T), user.toString());
 		int res;
 		try {
 			res = userDao.updateUser(user);
