@@ -1,0 +1,8 @@
+global.coda.hospitalmanagement
+global.coda.hospitalmanagement.config
+global.coda.hospitalmanagement.constants
+global.coda.hospitalmanagement.controllers
+global.coda.hospitalmanagement.delegates
+global.coda.hospitalmanagement.exceptions
+global.coda.hospitalmanagement.mappers
+global.coda.hospitalmanagement.models

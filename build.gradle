@@ -1,0 +1,77 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.3.BUILD-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+	id 'war'
+	id 'checkstyle'
+}
+
+group = 'global.coda'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	jcenter()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+ext {
+    checkstyleVersion = '8.11'
+}
+
+checkstyle {
+    sourceSets = []
+    toolVersion = checkstyleVersion
+    config = rootProject.resources.text.fromFile('etc/checkstyle/rules.xml')
+}
+
+task checkstyle {
+    dependsOn 'checkstyleMain'
+    dependsOn 'checkstyleTest'
+    tasks.findByName('checkstyleTest').mustRunAfter 'checkstyleMain'
+}
+
+
+dependencies {
+
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    
+    // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+     
+    // https://mvnrepository.com/artifact/org.testng/testng
+	testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'mysql:mysql-connector-java'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+	runtimeOnly 'mysql:mysql-connector-java'
+	
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
+	
+    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+    implementation 'com.google.guava:guava:27.0.1-jre'
+    
+    compile group: 'com.opencsv', name: 'opencsv', version: '4.1'
+      
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+    
+    // https://mvnrepository.com/artifact/dom4j/dom4j
+	compile group: 'dom4j', name: 'dom4j', version: '1.6.1'
+	
+	// https://mvnrepository.com/artifact/jstl/jstl
+	compile group: 'jstl', name: 'jstl', version: '1.2'
+}
+
