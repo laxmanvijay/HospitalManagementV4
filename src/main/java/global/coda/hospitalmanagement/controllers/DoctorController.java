@@ -20,8 +20,6 @@ import global.coda.hospitalmanagement.exceptions.BusinessException;
 import global.coda.hospitalmanagement.exceptions.SystemException;
 import global.coda.hospitalmanagement.models.CustomResponse;
 import global.coda.hospitalmanagement.models.Doctor;
-import global.coda.hospitalmanagement.models.Patient;
-import global.coda.hospitalmanagement.models.PatientWithDoctor;
 
 /**
  *
@@ -52,8 +50,8 @@ public class DoctorController {
 	public final String createDoctor(@RequestBody Doctor doctor) throws SystemException, BusinessException {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2000T), doctor.toString());
 		int doctorId = doctorDelegate.createDoctor(doctor);
-		CustomResponse<Doctor> customResponse = new CustomResponse<>();
-		Doctor doctorAfterCreation = doctorDelegate.readDoctor(doctorId);
+		CustomResponse<List<Doctor>> customResponse = new CustomResponse<>();
+		List<Doctor> doctorAfterCreation = doctorDelegate.readDoctor(doctorId, false);
 		customResponse.setStatusCode(200);
 		customResponse.setData(doctorAfterCreation);
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2001T), customResponse);
@@ -70,8 +68,8 @@ public class DoctorController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public final String readDoctorById(@PathVariable("id") int id) throws SystemException, BusinessException {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2002T), id);
-		Doctor doctor = doctorDelegate.readDoctor(id);
-		CustomResponse<Doctor> customResponse = new CustomResponse<>();
+		List<Doctor> doctor = doctorDelegate.readDoctor(id, false);
+		CustomResponse<List<Doctor>> customResponse = new CustomResponse<>();
 		customResponse.setStatusCode(200);
 		customResponse.setData(doctor);
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2003T), customResponse);
@@ -126,11 +124,10 @@ public class DoctorController {
 	@RequestMapping(value = "{id}/patients", method = RequestMethod.GET)
 	public final String readAllPatientsOfDoctor(@PathVariable("id") int id) throws SystemException, BusinessException {
 		LOGGER.info(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2008T), id);
-		System.out.println(id);
-		List<Patient> listOfPatients = doctorDelegate.getAllPatientsOfADoctor(id);
-		CustomResponse<List<Patient>> customResponse = new CustomResponse<>();
+		List<Doctor> doctorWithPatients = doctorDelegate.readDoctor(id, true);
+		CustomResponse<List<Doctor>> customResponse = new CustomResponse<>();
 		customResponse.setStatusCode(200);
-		customResponse.setData(listOfPatients);
+		customResponse.setData(doctorWithPatients);
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2009T), customResponse);
 		return gson.toJson(customResponse);
 	}
@@ -144,8 +141,8 @@ public class DoctorController {
 	@RequestMapping(value = "getallpatients")
 	public final String readAllPatientsOfAllDoctors() throws SystemException, BusinessException {
 		LOGGER.info(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2010T));
-		List<PatientWithDoctor> listOfPatients = doctorDelegate.getAllPatientsOfAllDoctors();
-		CustomResponse<List<PatientWithDoctor>> customResponse = new CustomResponse<>();
+		List<Doctor> listOfPatients = doctorDelegate.readDoctor(0, true);
+		CustomResponse<List<Doctor>> customResponse = new CustomResponse<>();
 		customResponse.setStatusCode(200);
 		customResponse.setData(listOfPatients);
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2011T), customResponse);

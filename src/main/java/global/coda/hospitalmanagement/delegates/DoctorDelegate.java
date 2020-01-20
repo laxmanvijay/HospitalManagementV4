@@ -13,11 +13,8 @@ import global.coda.hospitalmanagement.exceptions.BusinessException;
 import global.coda.hospitalmanagement.exceptions.DuplicateIdException;
 import global.coda.hospitalmanagement.exceptions.SystemException;
 import global.coda.hospitalmanagement.mappers.DoctorMapper;
-import global.coda.hospitalmanagement.mappers.PatientMapper;
 import global.coda.hospitalmanagement.mappers.UserMapper;
 import global.coda.hospitalmanagement.models.Doctor;
-import global.coda.hospitalmanagement.models.Patient;
-import global.coda.hospitalmanagement.models.PatientWithDoctor;
 
 /**
  *
@@ -34,9 +31,6 @@ public class DoctorDelegate {
 
 	@Autowired
 	private UserMapper userDao;
-
-	@Autowired
-	private PatientMapper patientDao;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DoctorDelegate.class);
 	private static final ResourceBundle LOG_RESOURCE_BUNDLE = ResourceBundle
@@ -57,7 +51,6 @@ public class DoctorDelegate {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1000T), user.toString());
 		int res;
 		try {
-			System.out.println(user.getEmail());
 			userDao.createUser(user);
 			doctorDao.createDoctor(user);
 			res = user.getPkUserId();
@@ -80,19 +73,20 @@ public class DoctorDelegate {
 	 * @throws SystemException thrown in case of system errors
 	 * @throws BusinessException client side exceptions
 	 */
-	public Doctor readDoctor(int id) throws SystemException, BusinessException {
+	public List<Doctor> readDoctor(int id, boolean requirePatients) throws SystemException, BusinessException {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1002T), id);
-		if (id == 0) {
-			throw new BusinessException("id not given");
-		}
-		Doctor user;
+		List<Doctor> user;
 		try {
-			user = doctorDao.readDoctorbyUserId(id);
-			if (user == null) {
-				throw new BusinessException("id not found");
+			if (!requirePatients) {
+				user = doctorDao.readDoctorbyUserId(id);
+			} else {
+				user = doctorDao.readDoctorbyUserIdAlongWithPatients(id);
 			}
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
+		}
+		if (user == null) {
+			throw new BusinessException("id not found");
 		}
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1003T), user.toString());
 		return user;
@@ -108,21 +102,17 @@ public class DoctorDelegate {
 	public boolean updateDoctor(Doctor doctor) throws SystemException, BusinessException {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1004T), doctor.toString());
 		int res;
-		if (doctor == null) {
-			throw new BusinessException("id not found");
-		}
 		if (doctor.isEmpty()) {
 			throw new BusinessException("provide all values");
 		}
 		try {
 			userDao.updateUser(doctor);
 			res = doctorDao.updateDoctor(doctor);
-			System.out.println(doctor.getAge());
-			if (res == 0) {
-				throw new BusinessException("id not found");
-			}
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
+		}
+		if (res == 0) {
+			throw new BusinessException("id not found");
 		}
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1005T), res);
 		return true;
@@ -143,67 +133,13 @@ public class DoctorDelegate {
 		}
 		try {
 			res = userDao.deleteUser(id);
-			if (res == 0) {
-				throw new BusinessException("id not found");
-			}
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
+		}
+		if (res == 0) {
+			throw new BusinessException("id not found");
 		}
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1007T), res);
 		return res;
-	}
-
-	/**
-	 *
-	 * @param id id of doctor
-	 * @return List<Patient>
-	 * @throws SystemException server side
-	 * @throws BusinessException client side
-	 */
-	public List<Patient> getAllPatientsOfADoctor(int id) throws SystemException, BusinessException {
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1008T), id);
-		List<Patient> res;
-		if (id == 0) {
-			throw new BusinessException("id not found");
-		}
-		try {
-			List<Integer> patientId = doctorDao.getAllPatientIdOfADoctor(id);
-			if (patientId.isEmpty()) {
-				throw new BusinessException("no patient record found");
-			}
-			StringBuilder idstring = new StringBuilder();
-			patientId.forEach(x -> {
-				idstring.append(x + ",");
-			});
-			res = patientDao.getSeveralPatientsWithTheirId(idstring.toString());
-			if (res.isEmpty()) {
-				throw new BusinessException("no patient record found");
-			}
-		} catch (Exception e) {
-			throw new SystemException(e.getMessage());
-		}
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1009T), res);
-		return res;
-	}
-
-	/**
-	 *
-	 * @return List<PatientWithDoctor>
-	 * @throws SystemException server side errors
-	 * @throws BusinessException client side errors
-	 */
-	public List<PatientWithDoctor> getAllPatientsOfAllDoctors() throws SystemException, BusinessException {
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1010T));
-		List<PatientWithDoctor> patients;
-		try {
-			patients = doctorDao.getAllPatientsOfAllDoctors();
-			if (patients.isEmpty()) {
-				throw new BusinessException("no patient record found");
-			}
-		} catch (Exception e) {
-			throw new SystemException(e.getMessage());
-		}
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1011T), patients.toString());
-		return patients;
 	}
 }

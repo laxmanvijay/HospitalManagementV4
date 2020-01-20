@@ -39,6 +39,9 @@ public class UserDelegate {
 	 * @throws BusinessException client side exception
 	 */
 	public int createUser(User user) throws SystemException, BusinessException {
+		if (user == null || user.isEmpty()) {
+			throw new BusinessException("user is null");
+		}
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC3000T), user.toString());
 		int res;
 		try {
@@ -46,8 +49,10 @@ public class UserDelegate {
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
 		}
+		if (res == 0) {
+			throw new SystemException("error creating user");
+		}
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC3001T), res);
-
 		return res;
 	}
 
@@ -60,6 +65,9 @@ public class UserDelegate {
 	 */
 	public User readUser(int id) throws SystemException, BusinessException {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC3002T), id);
+		if (id == 0) {
+			throw new BusinessException("id is 0");
+		}
 		User user;
 		try {
 			user = userDao.readUserById(id);
@@ -78,6 +86,9 @@ public class UserDelegate {
 	 * @throws BusinessException client side exception
 	 */
 	public int updateUser(User user) throws SystemException, BusinessException {
+		if (user == null || user.isEmpty()) {
+			throw new BusinessException("user is empty");
+		}
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC3004T), user.toString());
 		int res;
 		try {
@@ -98,6 +109,9 @@ public class UserDelegate {
 	 */
 	public int deleteuser(int id) throws SystemException, BusinessException {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC3006T), id);
+		if (id == 0) {
+			throw new BusinessException("id is 0");
+		}
 		int res;
 		try {
 			res = userDao.deleteUser(id);

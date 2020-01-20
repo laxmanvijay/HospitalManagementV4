@@ -1,5 +1,7 @@
 package global.coda.hospitalmanagement.models;
 
+import java.util.List;
+
 /**
  *
  * @author Vijay
@@ -10,6 +12,7 @@ package global.coda.hospitalmanagement.models;
 public class Doctor extends User {
 
 	private String specialist;
+	private List<Patient> patients;
 
 	/**
 	 * checks for null values in the object.
@@ -23,6 +26,22 @@ public class Doctor extends User {
 		return false;
 
 	}
+
+	/**
+	 * @return the patients
+	 */
+	public List<Patient> getPatients() {
+		return patients;
+	}
+
+	/**
+	 * @param patients the patients to set
+	 */
+	public void setPatients(List<Patient> patients) {
+		this.patients = patients;
+	}
+
+
 
 	/**
 	 * @return the specialist

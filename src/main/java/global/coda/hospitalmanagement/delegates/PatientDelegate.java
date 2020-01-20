@@ -46,11 +46,11 @@ public class PatientDelegate {
 		int res;
 		try {
 			res = patientDao.createPatient(patient);
-			if (res == 0) {
-				throw new SystemException("error creating patient");
-			}
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
+		}
+		if (res == 0) {
+			throw new SystemException("error creating patient");
 		}
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2001T), res);
 		return res;
@@ -71,11 +71,11 @@ public class PatientDelegate {
 		Patient patient;
 		try {
 			patient = patientDao.readPatientByUserId(id);
-			if (patient.isEmpty() || patient == null) {
-				throw new BusinessException("id not found");
-			}
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
+		}
+		if (patient.isEmpty() || patient == null) {
+			throw new BusinessException("id not found");
 		}
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2003T), patient.toString());
 		return patient;
@@ -96,11 +96,11 @@ public class PatientDelegate {
 		}
 		try {
 			res = patientDao.updatePatient(patient);
-			if (res == 0) {
-				throw new BusinessException("duplicate id");
-			}
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
+		}
+		if (res == 0) {
+			throw new BusinessException("duplicate id");
 		}
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2005T), res);
 		return res;
@@ -121,11 +121,11 @@ public class PatientDelegate {
 		}
 		try {
 			res = patientDao.deletePatient(id);
-			if (res == 0) {
-				throw new BusinessException("id not found");
-			}
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
+		}
+		if (res == 0) {
+			throw new BusinessException("id not found");
 		}
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2007T), res);
 		return res;
