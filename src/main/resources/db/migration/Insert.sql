@@ -1,0 +1,1 @@
+INSERT into new_table values(2);

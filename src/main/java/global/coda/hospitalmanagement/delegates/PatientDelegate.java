@@ -11,6 +11,7 @@ import global.coda.hospitalmanagement.constants.DelegateConstants;
 import global.coda.hospitalmanagement.exceptions.BusinessException;
 import global.coda.hospitalmanagement.exceptions.SystemException;
 import global.coda.hospitalmanagement.mappers.PatientMapper;
+import global.coda.hospitalmanagement.mappers.UserMapper;
 import global.coda.hospitalmanagement.models.Patient;
 
 /**
@@ -26,6 +27,9 @@ public class PatientDelegate {
 
 	@Autowired
 	private PatientMapper patientDao;
+
+	@Autowired
+	private UserMapper userDao;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PatientDelegate.class);
 	private static final ResourceBundle LOG_RESOURCE_BUNDLE = ResourceBundle
@@ -45,6 +49,7 @@ public class PatientDelegate {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2000T), patient.toString());
 		int res;
 		try {
+			userDao.createUser(patient);
 			res = patientDao.createPatient(patient);
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
@@ -95,6 +100,7 @@ public class PatientDelegate {
 			throw new BusinessException("id not found");
 		}
 		try {
+			userDao.updateUser(patient);
 			res = patientDao.updatePatient(patient);
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());

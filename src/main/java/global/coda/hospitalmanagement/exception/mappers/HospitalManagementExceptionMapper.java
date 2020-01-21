@@ -29,6 +29,7 @@ public class HospitalManagementExceptionMapper {
 		response.setData(error.getMessage());
 		return new ResponseEntity<CustomResponse<String>>(response, HttpStatus.NOT_FOUND);
 	}
+
 	/**
 	 * System exception.
 	 *
@@ -41,6 +42,15 @@ public class HospitalManagementExceptionMapper {
 		CustomResponse<String> response = new CustomResponse<String>();
 		response.setStatusCode(500);
 		response.setData("error occurred");
+		return new ResponseEntity<CustomResponse<String>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(value = Exception.class)
+	public ResponseEntity<CustomResponse<String>> randomException(Exception error) {
+		logger.error(error.getMessage());
+		CustomResponse<String> response = new CustomResponse<String>();
+		response.setStatusCode(500);
+		response.setData("unknown error occurred");
 		return new ResponseEntity<CustomResponse<String>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
