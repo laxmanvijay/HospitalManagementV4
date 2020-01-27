@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ import global.coda.hospitalmanagement.models.Doctor;
  * Api provider for doctor operations
  *
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/doctor")
 public class DoctorController {
@@ -49,7 +51,6 @@ public class DoctorController {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public final CustomResponse<List<Doctor>> createDoctor(@RequestBody Doctor doctor, HttpServletRequest req) throws SystemException, BusinessException {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2000T), doctor.toString());
-		System.out.println(req.getAttribute("request id"));
 		int doctorId = doctorDelegate.createDoctor(doctor);
 		CustomResponse<List<Doctor>> customResponse = new CustomResponse<>();
 		List<Doctor> doctorAfterCreation = doctorDelegate.readDoctor(doctorId, false);
@@ -71,7 +72,6 @@ public class DoctorController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public final CustomResponse<List<Doctor>> readDoctorById(HttpServletRequest req, @PathVariable("id") int id, @RequestParam(value = "requirePatients", required = false) boolean requirePatients) throws SystemException, BusinessException {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC2002T), id);
-		System.out.println(req.getAttribute("request id"));
 		List<Doctor> doctor = doctorDelegate.readDoctor(id, requirePatients);
 		CustomResponse<List<Doctor>> customResponse = new CustomResponse<>();
 		customResponse.setStatusCode(200);

@@ -16,13 +16,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import global.coda.hospitalmanagement.controllers.DoctorController;
-
 @Component
 @Order(1)
 public class TransactionFilter implements Filter {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(DoctorController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TransactionFilter.class);
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {

@@ -1,10 +1,12 @@
 package global.coda.hospitalmanagement.controllers;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,7 @@ import global.coda.hospitalmanagement.models.Patient;
  * Api provider for patient operations
  *
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/patient")
 public class PatientController {
@@ -62,10 +65,10 @@ public class PatientController {
 	 * @throws BusinessException client side exceptions
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public final CustomResponse<Patient> readPatientById(@PathVariable("id") int id) throws SystemException, BusinessException {
+	public final CustomResponse<List<Patient>> readPatientById(@PathVariable("id") int id) throws SystemException, BusinessException {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(ApiConstants.HMAPIC3002T), id);
-		Patient patient = patientDelegate.readPatient(id);
-		CustomResponse<Patient> customResponse = new CustomResponse<>();
+		List<Patient> patient = patientDelegate.readPatient(id);
+		CustomResponse<List<Patient>> customResponse = new CustomResponse<>();
 		LOGGER.debug("patient read using read method of PatientWebServiceApi");
 		customResponse.setStatusCode(200);
 		customResponse.setData(patient);

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.11">
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\HospitalManagementV4Application.java">
+<error line="11" column="1" severity="error" message="Utility classes should not have a public or default constructor." source="com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck"/>
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\ServletInitializer.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\constants\ApiConstants.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\constants\DelegateConstants.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\constants\QueryConstants.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\controllers\DoctorController.java">
+<error line="68" column="95" severity="error" message="Expected @throws tag for &apos;SystemException&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="68" column="112" severity="error" message="Expected @throws tag for &apos;BusinessException&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\controllers\HelloController.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\controllers\PatientController.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\controllers\UserController.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\delegates\DoctorDelegate.java">
+<error line="76" column="50" severity="error" message="Expected @param tag for &apos;requirePatients&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\delegates\PatientDelegate.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\delegates\UserDelegate.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\exception\mappers\HospitalManagementExceptionMapper.java">
+<error line="14" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck"/>
+<error line="48" column="3" severity="error" message="Class &apos;HospitalManagementExceptionMapper&apos; looks like designed for extension (can be subclassed), but the method &apos;randomException&apos; does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class &apos;HospitalManagementExceptionMapper&apos; final or making the method &apos;randomException&apos; static/final/abstract/empty, or adding allowed annotation for the method." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="48" column="3" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\exceptions\BusinessException.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\exceptions\DuplicateIdException.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\exceptions\NoPatientFoundException.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\exceptions\SystemException.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\mappers\BranchMapper.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\mappers\DoctorMapper.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\mappers\HospitalMapper.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\mappers\PatientMapper.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\mappers\UserMapper.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\models\Branch.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\models\CustomResponse.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\models\Doctor.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\models\Hospital.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\models\Patient.java">
+</file>
+<file name="D:\projects\HospitalManagementV4\src\main\java\global\coda\hospitalmanagement\models\User.java">
+</file>
+</checkstyle>

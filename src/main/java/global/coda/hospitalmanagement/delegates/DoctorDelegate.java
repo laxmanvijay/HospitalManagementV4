@@ -52,6 +52,9 @@ public class DoctorDelegate {
 		int res;
 		try {
 			userDao.createUser(user);
+			if (user.getSpecialist()==null) {
+				user.setSpecialist("not specified");
+			}
 			doctorDao.createDoctor(user);
 			res = user.getPkUserId();
 			if (res == -1) {
@@ -102,12 +105,11 @@ public class DoctorDelegate {
 	public boolean updateDoctor(Doctor doctor) throws SystemException, BusinessException {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC1004T), doctor.toString());
 		int res;
-		if (doctor.isEmpty()) {
-			throw new BusinessException("provide all values");
-		}
 		try {
-			userDao.updateUser(doctor);
-			res = doctorDao.updateDoctor(doctor);
+			res = userDao.updateUser(doctor);
+			if (doctor.getSpecialist() != null) {
+				res = doctorDao.updateDoctor(doctor);
+			}
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
 		}

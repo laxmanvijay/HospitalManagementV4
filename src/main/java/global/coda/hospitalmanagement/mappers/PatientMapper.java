@@ -34,7 +34,7 @@ public interface PatientMapper {
 	 * @return Patient
 	 */
 	@Select(QueryConstants.READ_PATIENT_BY_ID_QUERY)
-	Patient readPatientByUserId(int id);
+	List<Patient> readPatientByUserId(int id);
 
 	/**
 	 *

@@ -1,5 +1,6 @@
 package global.coda.hospitalmanagement.delegates;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.slf4j.Logger;
@@ -68,22 +69,19 @@ public class PatientDelegate {
 	 * @throws SystemException thrown in case of system errors
 	 * @throws BusinessException client side exceptions
 	 */
-	public Patient readPatient(int id) throws SystemException, BusinessException {
+	public List<Patient> readPatient(int id) throws SystemException, BusinessException {
 		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2002T), id);
-		if (id == 0) {
-			throw new BusinessException("id not found");
-		}
-		Patient patient;
+		List<Patient> patients;
 		try {
-			patient = patientDao.readPatientByUserId(id);
+			patients = patientDao.readPatientByUserId(id);
 		} catch (Exception e) {
 			throw new SystemException(e.getMessage());
 		}
-		if (patient.isEmpty() || patient == null) {
+		if (patients == null) {
 			throw new BusinessException("id not found");
 		}
-		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2003T), patient.toString());
-		return patient;
+		LOGGER.trace(LOG_RESOURCE_BUNDLE.getString(DelegateConstants.HMDC2003T), patients.toString());
+		return patients;
 	}
 
 	/**

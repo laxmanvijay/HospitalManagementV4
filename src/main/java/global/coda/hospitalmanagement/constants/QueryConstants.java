@@ -25,7 +25,7 @@ public final class QueryConstants {
 	public static final String DELETE_USER_PERMANENTLY_QUERY = "delete from t_user where pk_user_id = #{id}";
 
 	public static final String CREATE_PATIENT_QUERY = "insert into t_patient(weight,fk_user_id) values(#{weight},#{pkUserId})";
-	public static final String READ_PATIENT_BY_ID_QUERY = "select * from t_user join t_patient on t_user.pk_user_id=t_patient.fk_user_id where fk_user_id=#{id} and is_active=1";
+	public static final String READ_PATIENT_BY_ID_QUERY = "<script> select * from t_user join t_patient on t_user.pk_user_id=t_patient.fk_user_id where <if test = 'id!=0'> fk_user_id=#{id} and </if> is_active=1 </script>";
 	public static final String UPDATE_PATIENT_QUERY = "update t_patient set weight = ? where fk_user_id = ? and is_active=1";
 	public static final String READ_SEVERAL_PATIENT_WITH_THEIR_ID_QUERY = "select * from t_user join t_patient on t_user.pk_user_id=t_patient.fk_user_id where is_active = 1 and fk_user_id in (#{idstring})";
 

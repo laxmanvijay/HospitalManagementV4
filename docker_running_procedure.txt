@@ -1,0 +1,28 @@
+first create a network to share between mysql db container and spring boot container
+1) docker network create <network-name>
+
+then create a mysql docker container
+2) docker container run --name mysqldb --network <network-name> -e MYSQL_ROOT_PASSWORD=8903040410 -e MYSQL_DATABASE=<database-name> -d mysql:8
+
+to import existing data from local machine to container
+docker cp <local-file-name> <container-name>:<filename>
+
+then create an interactive session in the container to import the existing data
+3) docker container exec -it mysqldb bash
+4) mysql -u root -p <database-name> < <data_to_import.sql>
+
+then build the spring app
+1) gradle bootjar
+
+deploy the jar file to a java container image
+2) docker build -t <tag-name> .
+
+run the image
+3) docker run --network <network-name> --name <your-wish> --publish 8080:8080 <tag-name>
+
+Dockerfile:
+
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+COPY build/libs/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
